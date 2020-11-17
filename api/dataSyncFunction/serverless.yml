@@ -1,0 +1,30 @@
+# serverless.yml
+service: EmployeeApp
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: ap-southeast-1
+  accountId: 635515675161
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${self:provider.region}:${self:provider.accountId}:table/*"
+
+
+functions:
+  addNewApps:
+    handler: data-sync.syncData
+    events:
+      - http:
+          path: /api/v1/employeeapp/data/syncdata
+          method: post
+          cors: true
+
