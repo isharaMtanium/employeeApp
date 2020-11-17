@@ -5,7 +5,7 @@
   "main": "mtanium",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint api --ext .js",
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "author": "",
