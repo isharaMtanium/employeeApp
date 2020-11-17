@@ -1,0 +1,27 @@
+version: 0.2
+
+env:
+  environment: "dev"
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+
+    commands:
+      - echo Installing API dependencies for dataSyncFunction
+      - npm install -g serverless
+      - pwd
+      - ls -la
+      - cd api
+      - echo Installing dataSyncFunction microservice API dependencies
+      - npm install --silent
+      - npm run pretty
+      - cd dataSyncFunction
+      - npm install --silent
+      - echo Finished installing dataSyncFunction microservice API dependencies
+  build:
+    commands:
+      - echo Deploying APIs for dataSyncFunction microservice
+      - serverless deploy --stage dev --region ap-southeast-1
+      - echo Finished deploying dataSyncFunction microservice

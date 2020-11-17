@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
+Description: 'Dynamodb db tables for employeeApp '
+
+Resources:
+  Syncdata:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SyncData
+      AttributeDefinitions:
+        - AttributeName: deviceid
+          AttributeType: S
+      KeySchema:
+        - AttributeName: deviceid
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+
+
+Outputs:
+  TableName1:
+    Value: !Ref 'Syncdata'
+    Description: Name of the newly created DynamoDB table
+
+
